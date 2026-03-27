@@ -3,9 +3,14 @@ import BasicProps from "./components/BasicProps.jsx";
 import RefProps from "./components/RefProps.jsx";
 import ChildrenProps from "./components/ChildrenProps.jsx";
 import ComplexProps from "./components/ComplexProps.jsx";
-import ThemeToggler from "./components/ThemeToggler.jsx"
+import ThemeToggler, {
+  ThemeProvider,
+  useTheme,
+} from "./components/ThemeToggler.jsx";
+
 function Navigation() {
-  const isDark = true;
+  // const isDark = true;
+  const {isDark} = useTheme();
 
   const sections = [
     { id: "basic", label: "Basic Props", icon: "📦" },
@@ -97,7 +102,6 @@ function AppContent() {
             Made with ❤️ using Bun, Vite, React, and Tailwind CSS
           </p>
         </footer>
-        
       </div>
     </div>
   );
@@ -106,8 +110,9 @@ function AppContent() {
 function App() {
   return (
     <>
-      <AppContent />
-      <h1 className="">Hello world</h1>
+      <ThemeProvider>
+          <AppContent />
+      </ThemeProvider>
     </>
   );
 }
